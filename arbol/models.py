@@ -2,8 +2,9 @@ from django.db import models
 
 class Account(models.Model):
 	name = models.CharField(max_length=50)
-	parent = models.ForeignKey('self', null = True, related_name = 'Children', 
-		on_delete=  models.CASCADE)
+	Type = models.CharField(max_length=50, default='')
+	parent = models.ManyToManyField('self', related_name = 'Children',)
+	number = models.IntegerField(default=0)
 
 	class Meta:
 		ordering = ('name',)
